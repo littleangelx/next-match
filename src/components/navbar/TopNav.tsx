@@ -1,11 +1,15 @@
 import React from "react";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@heroui/navbar";
+import { Navbar, NavbarBrand, NavbarContent } from "@heroui/navbar";
 import { GiMatchTip } from "react-icons/gi";
 import Link from "next/link";
 import { Button } from "@heroui/button";
 import NavLink from "./NavLink";
+import { auth } from "@/auth";
+import UserMenu from "./UserMenu";
 
-export default function TopNav() {
+export default async function TopNav() {
+  const session = await auth();
+
   return (
     <Navbar
       maxWidth="xl"
@@ -32,22 +36,28 @@ export default function TopNav() {
         <NavLink href="/messages" label="Messages" />
       </NavbarContent>
       <NavbarContent justify="end">
-        <Button
-          as={Link}
-          href="login"
-          variant="bordered"
-          className="text-white"
-        >
-          Login
-        </Button>
-        <Button
-          as={Link}
-          href="register"
-          variant="bordered"
-          className="text-white"
-        >
-          Register
-        </Button>
+        {session?.user ? (
+          <UserMenu user={session.user} />
+        ) : (
+          <>
+            <Button
+              as={Link}
+              href="login"
+              variant="bordered"
+              className="text-white"
+            >
+              Login
+            </Button>
+            <Button
+              as={Link}
+              href="register"
+              variant="bordered"
+              className="text-white"
+            >
+              Register
+            </Button>
+          </>
+        )}
       </NavbarContent>
     </Navbar>
   );
