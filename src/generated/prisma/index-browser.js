@@ -144,6 +144,27 @@ exports.Prisma.AccountScalarFieldEnum = {
   session_state: 'session_state'
 };
 
+exports.Prisma.MemberScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  gender: 'gender',
+  dateOfBirth: 'dateOfBirth',
+  created: 'created',
+  updated: 'updated',
+  description: 'description',
+  city: 'city',
+  country: 'country',
+  image: 'image'
+};
+
+exports.Prisma.PhotoScalarFieldEnum = {
+  id: 'id',
+  url: 'url',
+  publicId: 'publicId',
+  memberId: 'memberId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -162,7 +183,9 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Account: 'Account'
+  Account: 'Account',
+  Member: 'Member',
+  Photo: 'Photo'
 };
 
 /**
