@@ -165,6 +165,11 @@ exports.Prisma.PhotoScalarFieldEnum = {
   memberId: 'memberId'
 };
 
+exports.Prisma.LikeScalarFieldEnum = {
+  sourceUserId: 'sourceUserId',
+  targetUserId: 'targetUserId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -185,7 +190,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
   Member: 'Member',
-  Photo: 'Photo'
+  Photo: 'Photo',
+  Like: 'Like'
 };
 
 /**
