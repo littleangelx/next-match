@@ -9,6 +9,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { GiPadlock } from "react-icons/gi";
 import { registerUser } from "@/app/actions/authActions";
+import { handleFormServerErrors } from "@/lib/util";
 
 export default function RegisterForm() {
   const {
@@ -22,19 +23,12 @@ export default function RegisterForm() {
   });
 
   const onSubmit = async (data: RegisterSchema) => {
-    const results = await registerUser(data);
+    const result = await registerUser(data);
 
-    if (results.status === "success") {
+    if (result.status === "success") {
       console.log("User registered successfully");
     } else {
-      if (Array.isArray(results.error)) {
-        results.error.forEach((e) => {
-          const fieldName = e.path.join(".") as "email" | "name" | "password";
-          setError(fieldName, { message: e.message });
-        });
-      } else {
-        setError("root.serverError", { message: results.error });
-      }
+      handleFormServerErrors(result, setError);
     }
   };
 

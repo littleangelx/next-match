@@ -1,7 +1,7 @@
 "use client";
 
 import { Member } from "@/generated/prisma";
-import { calculateAge } from "@/lib/util";
+import { calculateAge, transformImageUrl } from "@/lib/util";
 import { Card, CardBody, CardFooter } from "@heroui/card";
 import { Image } from "@heroui/image";
 import { Divider } from "@heroui/divider";
@@ -12,23 +12,18 @@ import { Button } from "@heroui/button";
 
 type Props = {
   member: Member;
+  navLinks: { name: string; href: string }[];
 };
 
-export default function MemberSidebar({ member }: Props) {
+export default function MemberSidebar({ member, navLinks }: Props) {
   const pathname = usePathname();
-  const basePath = `/members/${member.userId}`;
 
-  const navLinks = [
-    { name: "Profile", href: `${basePath}` },
-    { name: "Photos", href: `${basePath}/photos` },
-    { name: "Chat", href: `${basePath}/chat` },
-  ];
   return (
     <Card className="w-full mt-10 items-center h-[80vh]">
       <Image
         height={200}
         width={200}
-        src={member.image || "/images/user.png"}
+        src={transformImageUrl(member.image) || "/images/user.png"}
         alt="User profile main image"
         className="rounded-full mt-6 aspect-square object-cover"
       />
