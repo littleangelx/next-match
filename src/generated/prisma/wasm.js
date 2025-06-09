@@ -170,6 +170,17 @@ exports.Prisma.LikeScalarFieldEnum = {
   targetUserId: 'targetUserId'
 };
 
+exports.Prisma.MessageScalarFieldEnum = {
+  id: 'id',
+  text: 'text',
+  created: 'created',
+  senderId: 'senderId',
+  recipientId: 'recipientId',
+  dateRead: 'dateRead',
+  senderDeleted: 'senderDeleted',
+  recipientDeleted: 'recipientDeleted'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -191,7 +202,8 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   Member: 'Member',
   Photo: 'Photo',
-  Like: 'Like'
+  Like: 'Like',
+  Message: 'Message'
 };
 
 /**
